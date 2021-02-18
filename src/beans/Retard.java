@@ -7,13 +7,22 @@ import java.time.LocalTime;
 
 public class Retard extends Emargement{
 
+    /**
+     * Attributs
+     */
     private LocalTime retard;
 
-    public Retard(int identifiant, int jour, LocalDateTime dateArrivee, int identifiantEleve, LocalTime retard) {
-        super(identifiant, jour, dateArrivee, identifiantEleve);
+    /**
+     * Constructeurs
+     */
+    public Retard(int identifiant, LocalDateTime dateArrivee, int identifiantEleve, Cours cours, LocalTime retard) {
+        super(identifiant, dateArrivee, identifiantEleve, cours);
         this.retard = retard;
     }
 
+    /**
+     * Getters & Setters
+     */
     public LocalTime getRetard() {
         return retard;
     }

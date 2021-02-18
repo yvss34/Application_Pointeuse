@@ -1,8 +1,13 @@
 package beans;
 
+import java.util.ArrayList;
+
 public class Dirigeant extends Utilisateur{
 
-    public Dirigeant(int identifiant, String nom, String prenom) {
-        super(identifiant, nom, prenom);
+    /**
+     * Constructeurs
+     */
+    public Dirigeant(int identifiant, String nom, String prenom, String email, String motDePasse) {
+        super(identifiant, nom, prenom, email, motDePasse);
     }
 }

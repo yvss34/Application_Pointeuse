@@ -7,20 +7,36 @@ import java.util.HashMap;
 public class Eleve extends Utilisateur{
 
     /**
-     * Une liste d'horraires d'arrivées en fonction des jours de la semaine
+     * Attributs
      */
-    private HashMap<Integer, ArrayList<LocalTime>> emploiDuTemps;
+    private ArrayList<Emargement> emargements;
+    private ArrayList<Retard> retards;
 
-    public Eleve(int identifiant, String nom, String prenom, HashMap<Integer, ArrayList<LocalTime>> emploiDuTemps) {
-        super(identifiant, nom, prenom);
-        this.emploiDuTemps = emploiDuTemps;
+    /**
+     * Constructeurs
+     */
+    public Eleve(int identifiant, String nom, String prenom, String email, String motDePasse, ArrayList<Emargement> emargements, ArrayList<Retard> retards) {
+        super(identifiant, nom, prenom, email, motDePasse);
+        this.emargements = emargements;
+        this.retards = retards;
     }
 
-    public HashMap<Integer, ArrayList<LocalTime>> getEmploiDuTemps() {
-        return emploiDuTemps;
+    /**
+     * Getters & Setters
+     */
+    public ArrayList<Emargement> getEmargements() {
+        return emargements;
     }
 
-    public void setEmploiDuTemps(HashMap<Integer, ArrayList<LocalTime>> emploiDuTemps) {
-        this.emploiDuTemps = emploiDuTemps;
+    public void setEmargements(ArrayList<Emargement> emargements) {
+        this.emargements = emargements;
+    }
+
+    public ArrayList<Retard> getRetards() {
+        return retards;
+    }
+
+    public void setRetards(ArrayList<Retard> retards) {
+        this.retards = retards;
     }
 }

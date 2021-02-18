@@ -1,17 +1,39 @@
 package beans;
 
-public abstract class Utilisateur {
+public class Utilisateur {
 
+    public static int nombreUtilisateur = 0;
+
+    /**
+     * Attributs
+     */
     private int identifiant;
-
     private String nom;
-
     private String prenom;
+    private String email;
+    private String motDePasse;
 
-    public Utilisateur(int identifiant, String nom, String prenom) {
+    /**
+     * Constructeurs
+     */
+
+    public Utilisateur(int identifiant, String nom, String prenom, String email, String motDePasse) {
         this.identifiant = identifiant;
         this.nom = nom;
         this.prenom = prenom;
+        this.email = email;
+        this.motDePasse = motDePasse;
+    }
+
+    /**
+     * Getters & Setters
+     */
+    public static int getNombreUtilisateur() {
+        return nombreUtilisateur;
+    }
+
+    public static void setNombreUtilisateur(int nombreUtilisateur) {
+        Utilisateur.nombreUtilisateur = nombreUtilisateur;
     }
 
     public int getIdentifiant() {
@@ -36,5 +58,21 @@ public abstract class Utilisateur {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 }
