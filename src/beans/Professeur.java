@@ -4,31 +4,21 @@ import java.util.ArrayList;
 public class Professeur extends Utilisateur{
 
     /**
-     * Attributs
+     * Attributes
      */
-    private String specialite;
     private ArrayList<Cours> cours;
 
     /**
-     * Constructeurs
+     * Constructors
      */
-    public Professeur(int identifiant, String nom, String prenom, String email, String motDePasse, String specialite, ArrayList<Cours> cours) {
-        super(identifiant, nom, prenom, email, motDePasse);
-        this.specialite = specialite;
+    public Professeur(int identifiant,String nom, String prenom, String email, String motDePasse,ArrayList<Cours> cours) {
+        super(identifiant,nom, prenom, email, motDePasse);
         this.cours = cours;
     }
 
     /**
      * Getters & Setters
      */
-
-    public String getSpecialite() {
-        return specialite;
-    }
-
-    public void setSpecialite(String specialite) {
-        this.specialite = specialite;
-    }
 
     public ArrayList<Cours> getCours() {
         return cours;
@@ -37,4 +27,11 @@ public class Professeur extends Utilisateur{
     public void setCours(ArrayList<Cours> cours) {
         this.cours = cours;
     }
+
+	@Override
+	public String toString() {
+		return "Professeur [cours=" + cours + ", toString()=" + super.toString() + "]";
+	}
+    
+    
 }

@@ -1,24 +1,22 @@
 package beans;
 
-import java.time.LocalTime;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 public class Eleve extends Utilisateur{
 
     /**
-     * Attributs
+     * Attributes
      */
     private ArrayList<Emargement> emargements;
-    private ArrayList<Retard> retards;
 
     /**
-     * Constructeurs
+     * Constructors
      */
-    public Eleve(int identifiant, String nom, String prenom, String email, String motDePasse, ArrayList<Emargement> emargements, ArrayList<Retard> retards) {
-        super(identifiant, nom, prenom, email, motDePasse);
+    public Eleve(int identifiant,String nom, String prenom, String email, String motDePasse, ArrayList<Emargement> emargements) {
+        super(identifiant,nom, prenom, email, motDePasse);
         this.emargements = emargements;
-        this.retards = retards;
     }
 
     /**
@@ -32,11 +30,11 @@ public class Eleve extends Utilisateur{
         this.emargements = emargements;
     }
 
-    public ArrayList<Retard> getRetards() {
-        return retards;
-    }
+	@Override
+	public String toString() {
+		return "Eleve [emargements=" + emargements + ", toString()=" + super.toString() + "]";
+	}
 
-    public void setRetards(ArrayList<Retard> retards) {
-        this.retards = retards;
-    }
+    
+    
 }

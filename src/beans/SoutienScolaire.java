@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class SoutienScolaire {
 
     /**
-     * Attributs
+     * Attributes
      */
     private int identifiant;
     private String nom;
@@ -15,7 +15,7 @@ public class SoutienScolaire {
     private ArrayList<Cours> cours;
 
     /**
-     * Constructeurs
+     * Constructors
      */
     public SoutienScolaire(int identifiant, String nom, ArrayList<Eleve> eleves, ArrayList<Dirigeant> dirigeants, ArrayList<Professeur> professeurs, ArrayList<Cours> cours) {
         this.identifiant = identifiant;

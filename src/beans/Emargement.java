@@ -1,26 +1,25 @@
 package beans;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.sql.Timestamp;
 
 public class Emargement {
 
     /**
-     * Attributs
+     * Attributes
      */
     private int identifiant;
-    private LocalDateTime dateArrivee;
+    private Timestamp dateArrivee;
     private int identifiantEleve;
-    private Cours cours;
+    private int identifiantCours;
 
     /**
-     * Constructeurs
+     * Constructors
      */
-    public Emargement(int identifiant, LocalDateTime dateArrivee, int identifiantEleve, Cours cours) {
-        this.identifiant = identifiant;
+    public Emargement(int identifiant , Timestamp dateArrivee, int identifiantEleve, int identifiantCours) {
+    	this.identifiant = identifiant;
         this.dateArrivee = dateArrivee;
         this.identifiantEleve = identifiantEleve;
-        this.cours = cours;
+        this.identifiantCours = identifiantCours;
     }
 
     /**
@@ -34,11 +33,11 @@ public class Emargement {
         this.identifiant = identifiant;
     }
 
-    public LocalDateTime getDateArrivee() {
+    public Timestamp getDateArrivee() {
         return dateArrivee;
     }
 
-    public void setDateArrivee(LocalDateTime dateArrivee) {
+    public void setDateArrivee(Timestamp dateArrivee) {
         this.dateArrivee = dateArrivee;
     }
 
@@ -50,11 +49,19 @@ public class Emargement {
         this.identifiantEleve = identifiantEleve;
     }
 
-    public Cours getCours() {
-        return cours;
-    }
+	public int getIdentifiantCours() {
+		return identifiantCours;
+	}
 
-    public void setCours(Cours cours) {
-        this.cours = cours;
-    }
+	public void setIdentifiantCours(int identifiantCours) {
+		this.identifiantCours = identifiantCours;
+	}
+
+	@Override
+	public String toString() {
+		return "Emargement [identifiant=" + identifiant + ", dateArrivee=" + dateArrivee + ", identifiantEleve="
+				+ identifiantEleve + ", identifiantCours=" + identifiantCours + "]";
+	}
+	
+	
 }

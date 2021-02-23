@@ -2,10 +2,8 @@ package beans;
 
 public class Utilisateur {
 
-    public static int nombreUtilisateur = 0;
-
     /**
-     * Attributs
+     * Attributes
      */
     private int identifiant;
     private String nom;
@@ -14,11 +12,11 @@ public class Utilisateur {
     private String motDePasse;
 
     /**
-     * Constructeurs
+     * Constructors
      */
 
     public Utilisateur(int identifiant, String nom, String prenom, String email, String motDePasse) {
-        this.identifiant = identifiant;
+    	this.identifiant = identifiant;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -28,13 +26,6 @@ public class Utilisateur {
     /**
      * Getters & Setters
      */
-    public static int getNombreUtilisateur() {
-        return nombreUtilisateur;
-    }
-
-    public static void setNombreUtilisateur(int nombreUtilisateur) {
-        Utilisateur.nombreUtilisateur = nombreUtilisateur;
-    }
 
     public int getIdentifiant() {
         return identifiant;
@@ -75,4 +66,12 @@ public class Utilisateur {
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
     }
+
+	@Override
+	public String toString() {
+		return "Utilisateur [identifiant=" + identifiant + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email
+				+ ", motDePasse=" + motDePasse + "]";
+	}
+    
+    
 }

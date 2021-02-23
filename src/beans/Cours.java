@@ -1,41 +1,33 @@
 package beans;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Cours {
 
     /**
-     * Attributs
+     * Attributes
      */
-    private static int nbrCours = 0;
     private int identifiant;
     private String nom;
-    private LocalDateTime horaires;
+    private Timestamp horaires;
     private ArrayList<Emargement> emargements;
-    private ArrayList<Retard> retards;
+    private int identifiantProfesseur;
 
     /**
-     * Constructeurs
+     * Constructors
      */
-    public Cours(int identifiant, String nom, LocalDateTime horaires, ArrayList<Emargement> emargements, ArrayList<Retard> retards) {
+    public Cours(int identifiant, String nom, Timestamp horaires, ArrayList<Emargement> emargements,int identifiantProfesseur) {
         this.identifiant = identifiant;
         this.nom = nom;
         this.horaires = horaires;
         this.emargements = emargements;
-        this.retards = retards;
+        this.identifiantProfesseur = identifiantProfesseur;
     }
 
     /**
      * Getters & Setters
      */
-    public static int getNbrCours() {
-        return nbrCours;
-    }
-
-    public static void setNbrCours(int nbrCours) {
-        Cours.nbrCours = nbrCours;
-    }
 
     public int getIdentifiant() {
         return identifiant;
@@ -61,19 +53,27 @@ public class Cours {
         this.emargements = emargements;
     }
 
-    public ArrayList<Retard> getRetards() {
-        return retards;
-    }
-
-    public void setRetards(ArrayList<Retard> retards) {
-        this.retards = retards;
-    }
-
-    public LocalDateTime getHoraires() {
+    public Timestamp getHoraires() {
         return horaires;
     }
 
-    public void setHoraires(LocalDateTime horaires) {
+    public void setHoraires(Timestamp horaires) {
         this.horaires = horaires;
     }
+
+	public int getIdentifiantProfesseur() {
+		return identifiantProfesseur;
+	}
+
+	public void setIdentifiantProfesseur(int identifiantProfesseur) {
+		this.identifiantProfesseur = identifiantProfesseur;
+	}
+
+	@Override
+	public String toString() {
+		return "Cours [identifiant=" + identifiant + ", nom=" + nom + ", horaires=" + horaires + ", emargements="
+				+ emargements + ", identifiantProfesseur=" + identifiantProfesseur + "]";
+	}
+    
+    
 }
