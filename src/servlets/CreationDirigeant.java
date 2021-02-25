@@ -1,52 +1,38 @@
 package servlets;
 
-import beans.Dirigeant;
-import beans.Eleve;
-import beans.Emargement;
-import beans.Retard;
-
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CreationDirigeant extends HttpServlet{
+import forms.CreationDirigeantForm;
+import forms.CreationEleveForm;
 
-    public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        /*
-         * Récupération des données saisies, envoyées en tant que paramètres de
-         * la requête GET générée à la validation du formulaire
-         */
-        String nom = request.getParameter( "nomDirigeant" );
-        String prenom = request.getParameter( "prenomDirigeant" );
-        String email = request.getParameter( "emailDirigeant" );
-        String motDePasse = request.getParameter( "motDePasseDirigeant" );
+/**
+ * Servlet implementation class CreationDirigeant
+ */
+@WebServlet("/CreationDirigeant")
+public class CreationDirigeant extends HttpServlet {
+	public static final String ATT_USER = "utilisateur";
+	public static final String ATT_FORM = "form";
+	public static final String ATT_SESSION_USER = "sessionUtilisateur";
+	public static final String VUE = "/WEB-INF/restreint/dirigeant/creationDirigeant.jsp";
 
-        String message;
-        /*
-         * Initialisation du message à afficher : si un des champs obligatoires
-         * du formulaire n'est pas renseigné, alors on affiche un message
-         * d'erreur, sinon on affiche un message de succès
-         */
-        if ( nom.trim().isEmpty() || prenom.trim().isEmpty() || email.trim().isEmpty() ||motDePasse.trim().isEmpty()) {
-            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires.";
-        } else {
-            message = "Client créé avec succès !";
-        }
-        /*
-         * Création du bean Client et initialisation avec les données récupérées
-         */
-        Dirigeant dirigeant = new Dirigeant(nom,prenom,email,motDePasse);
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* Affichage de la page de connexion */
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+	}
 
-        /* Ajout du bean et du message à l'objet requête */
-        request.setAttribute( "Dirigeant", dirigeant );
-        request.setAttribute( "message", message );
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* Pr�paration de l'objet formulaire */
+		CreationDirigeantForm form = new CreationDirigeantForm();
 
-        /* Transmission à la page JSP en charge de l'affichage des données */
-        this.getServletContext().getRequestDispatcher( "/afficherDirigeant.jsp" ).forward( request, response );
-    }
+		/* Traitement de la requ�te et r�cup�ration du bean en r�sultant */
+		form.creationDirigeant(request);
+		request.setAttribute(ATT_FORM, form);
+		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+	}
 
 }

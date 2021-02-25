@@ -64,4 +64,20 @@ public class EmargementDaoImpl implements EmargementDao{
         return emargements;
 	}
 
+	@Override
+	public void supprimer(int identifiant) {
+		// TODO Auto-generated method stub
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = daoFactory.getConnection();
+            
+            preparedStatement = connexion.prepareStatement("DELETE FROM emargement WHERE emargement.identifiant = ?;");
+            preparedStatement.setInt(1, identifiant);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
 }

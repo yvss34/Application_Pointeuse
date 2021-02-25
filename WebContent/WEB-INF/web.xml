@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-    <servlet>
-        <servlet-name>CreationEleve</servlet-name>
-        <servlet-class>servlets.CreationEleve</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreationDirigeant</servlet-name>
-        <servlet-class>servlets.CreationDirigeant</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreationProfesseur</servlet-name>
-        <servlet-class>servlets.CreationProfesseur</servlet-class>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>CreationEleve</servlet-name>
-        <url-pattern>/creationEleve</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreationProfesseur</servlet-name>
-        <url-pattern>/creationProfesseur</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreationDirigeant</servlet-name>
-        <url-pattern>/creationDirigeant</url-pattern>
-    </servlet-mapping>
+<filter>
+	<filter-name>RestrictionFilter</filter-name>
+	<filter-class>filters.RestrictionFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>RestrictionFilter</filter-name>
+	<url-pattern>/restreint/*</url-pattern>
+</filter-mapping>
+
+<filter>
+	<filter-name>RestrictionEleveFilter</filter-name>
+	<filter-class>filters.RestrictionEleveFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>RestrictionEleveFilter</filter-name>
+	<url-pattern>/restreint/eleve/*</url-pattern>
+</filter-mapping>
+
+<filter>
+	<filter-name>RestrictionProfesseurFilter</filter-name>
+	<filter-class>filters.RestrictionProfesseurFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>RestrictionProfesseurFilter</filter-name>
+	<url-pattern>/restreint/professeur/*</url-pattern>
+</filter-mapping>
+
+<filter>
+	<filter-name>RestrictionDirigeantFilter</filter-name>
+	<filter-class>filters.RestrictionDirigeantFilter</filter-class>
+</filter>
+<filter-mapping>
+	<filter-name>RestrictionDirigeantFilter</filter-name>
+	<url-pattern>/restreint/dirigeant/*</url-pattern>
+</filter-mapping>
 </web-app>

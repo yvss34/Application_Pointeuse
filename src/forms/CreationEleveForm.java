@@ -5,62 +5,47 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import beans.*;
+import beans.Eleve;
+import beans.Utilisateur;
 import dao.DaoFactory;
-import dao.DirigeantDao;
 import dao.EleveDao;
-import dao.ProfesseurDao;
 
-
-public final class ConnexionForm {
+public class CreationEleveForm {
+	
     private static final String CHAMP_EMAIL  = "email";
     private static final String CHAMP_PASS   = "motdepasse";
-
+    private static final String CHAMP_NOM   = "nom";
+    private static final String CHAMP_PRENOM   = "prenom";
+	
     private String              resultat;
     private Map<String, String> erreurs      = new HashMap<String, String>();
-
-    private Eleve eleve;
-    private Professeur professeur;
-    private Dirigeant dirigeant;
     
-    public String getResultat() {
-        return resultat;
-    }
-
-    public Map<String, String> getErreurs() {
-        return erreurs;
-    }
-
     
-    public Eleve getEleve() {
-		return eleve;
+    
+	public String getResultat() {
+		return resultat;
 	}
 
-	public void setEleve(Eleve eleve) {
-		this.eleve = eleve;
+	public void setResultat(String resultat) {
+		this.resultat = resultat;
 	}
 
-	public Professeur getProfesseur() {
-		return professeur;
+	public Map<String, String> getErreurs() {
+		return erreurs;
 	}
 
-	public void setProfesseur(Professeur professeur) {
-		this.professeur = professeur;
+	public void setErreurs(Map<String, String> erreurs) {
+		this.erreurs = erreurs;
 	}
 
-	public Dirigeant getDirigeant() {
-		return dirigeant;
-	}
-
-	public void setDirigeant(Dirigeant dirigeant) {
-		this.dirigeant = dirigeant;
-	}
-
-	public Utilisateur connecterUtilisateur( HttpServletRequest request ) {
+	public Utilisateur creationEleve( HttpServletRequest request ) {
+		
         /* Récupération des champs du formulaire */
         String email = getValeurChamp( request, CHAMP_EMAIL );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
-
+        String nom = getValeurChamp( request, CHAMP_NOM );
+        String prenom = getValeurChamp( request, CHAMP_PRENOM );
+        
         /* Validation du champ email. */
         try {
             validationEmail( email );
@@ -77,23 +62,12 @@ public final class ConnexionForm {
 
         if ( erreurs.isEmpty() ) {
         	try {
-        		validation(email,motDePasse);
-        		if(eleve==null && dirigeant==null && professeur==null) {
-        			setErreur( CHAMP_EMAIL, "Identifiant Incorrect" );
-        		}
-        		else {
-        			if(eleve!=null) {
-        				resultat = "Succès de la connexion.";
-        				return eleve;
-        			}
-        			else if(professeur!=null) {
-        				resultat = "Succès de la connexion.";
-        				return professeur;
-        			}else {
-        				resultat = "Succès de la connexion.";
-        				return dirigeant;
-        			}
-        		}
+        		Eleve eleve = new Eleve(0,nom,prenom,email,motDePasse,null);
+        		DaoFactory daoFactory = DaoFactory.getInstance();     
+    		    EleveDao eleveDao;
+    	        eleveDao = daoFactory.getEleveDao();
+    	        eleveDao.ajouter(eleve);
+    	        
         	}catch(Exception e) {
         		setErreur( CHAMP_EMAIL, "Erreur de communication avec la base de données" );
         	}
@@ -102,9 +76,9 @@ public final class ConnexionForm {
         System.out.println(erreurs.isEmpty());
         /* Initialisation du résultat global de la validation. */
         if ( erreurs.isEmpty() ) {
-            resultat = "Succès de la connexion.";
+            resultat = "Ajout avec succès";
         } else {
-            resultat = "Échec de la connexion.";
+            resultat = "Échec de l'ajout.";
         }
         return null;
     }
@@ -149,29 +123,5 @@ public final class ConnexionForm {
         } else {
             return valeur;
         }
-    }
-    
-    /*
-     * Retourne l'utilisateur ou null si n'existe pas
-     */
-    private void validation(String email, String motdepasse) {
-    	
-    	try {
-	    	DaoFactory daoFactory = DaoFactory.getInstance();
-	        
-		    EleveDao eleveDao;
-	        eleveDao = daoFactory.getEleveDao();
-	        eleve = eleveDao.getEleve(email, motdepasse);
-	        
-	        ProfesseurDao professeurDao;
-	        professeurDao = daoFactory.getProfesseurDao();
-	        professeur = professeurDao.getProfesseur(email, motdepasse);
-	       
-	        DirigeantDao dirigeantDao;
-	        dirigeantDao = daoFactory.getDirigeantDao();
-	        dirigeant = dirigeantDao.getDirigeant(email, motdepasse);
-    	}catch(Exception e) {
-    		setErreur( CHAMP_EMAIL, "Erreur de communication avec la base de données" );
-    	}
     }
 }

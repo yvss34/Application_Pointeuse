@@ -79,5 +79,22 @@ public class CoursDaoImpl implements CoursDao{
 	        }
             return coursListe;
 	}
+	
+	@Override
+	public void supprimer(int identifiant) {
+		// TODO Auto-generated method stub
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = daoFactory.getConnection();
+            
+            preparedStatement = connexion.prepareStatement("DELETE FROM cours WHERE cours.identifiant = ?;");
+            preparedStatement.setInt(1, identifiant);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
 
 }

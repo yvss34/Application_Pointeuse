@@ -51,4 +51,8 @@ public class DaoFactory {
     public CoursDao getCoursDao() {
         return new CoursDaoImpl(this);
     }
+    
+    public SoutienScolaireDao getSoutienScolaireDao() {
+        return new SoutienScolaireDaoImpl(this);
+    }
 }

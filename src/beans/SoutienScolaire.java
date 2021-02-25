@@ -75,4 +75,11 @@ public class SoutienScolaire {
     public void setCours(ArrayList<Cours> cours) {
         this.cours = cours;
     }
+	@Override
+	public String toString() {
+		return "SoutienScolaire [identifiant=" + identifiant + ", nom=" + nom + ", eleves=" + eleves + ", dirigeants="
+				+ dirigeants + ", professeurs=" + professeurs + ", cours=" + cours + "]";
+	}
+    
+    
 }

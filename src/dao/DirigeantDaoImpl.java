@@ -65,5 +65,46 @@ public class DirigeantDaoImpl implements DirigeantDao{
         }
         return dirigeants;
 	}
+	
+	@Override
+	public void supprimer(int identifiant) {
+		// TODO Auto-generated method stub
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
 
+        try {
+            connexion = daoFactory.getConnection();
+            
+            preparedStatement = connexion.prepareStatement("DELETE FROM dirigeant WHERE dirigeant.identifiant = ?;");
+            preparedStatement.setInt(1, identifiant);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	@Override
+	public Dirigeant getDirigeant(String email, String motdepasse) {
+		// TODO Auto-generated method stub
+        Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat1 = null;
+        try {
+            connexion = daoFactory.getConnection();
+            statement = connexion.createStatement();
+            resultat1 = statement.executeQuery("SELECT identifiant,nom,prenom FROM dirigeant WHERE email = '"+email+"' AND password = '"+motdepasse+"';");
+
+            while (resultat1.next()) {
+            	int identifiantDirigeant = resultat1.getInt("identifiant");
+                String nom = resultat1.getString("nom");
+                String prenom = resultat1.getString("prenom");
+   
+                Dirigeant dirigeant = new Dirigeant(identifiantDirigeant,nom,prenom,email,motdepasse);
+                return dirigeant;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+	}
 }
