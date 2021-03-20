@@ -71,8 +71,7 @@ public class Cours {
 
 	@Override
 	public String toString() {
-		return "Cours [identifiant=" + identifiant + ", nom=" + nom + ", horaires=" + horaires + ", emargements="
-				+ emargements + ", identifiantProfesseur=" + identifiantProfesseur + "]";
+		return  nom +" " + horaires ;
 	}
     
     

@@ -9,4 +9,5 @@ public interface ProfesseurDao {
 	List<Professeur> lister();
 	void supprimer(int identifiant);
 	Professeur getProfesseur(String email, String motdepasse);
+	Professeur getProfesseur(int identifiant);
 }

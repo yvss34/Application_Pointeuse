@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.Cours;
+import beans.Eleve;
 import beans.Emargement;
 
 public class CoursDaoImpl implements CoursDao{
@@ -95,6 +96,46 @@ public class CoursDaoImpl implements CoursDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+	}
+	
+	@Override
+	public Cours getCours(int identifiant) {
+		// TODO Auto-generated method stub
+        Connection connexion = null;
+        Statement statement = null;
+        Statement statement2 = null;
+        ResultSet resultat1 = null;
+        ResultSet resultat2 = null;
+        try {
+            connexion = daoFactory.getConnection();
+            statement = connexion.createStatement();
+            statement2 = connexion.createStatement();
+            resultat1 = statement.executeQuery("SELECT identifiant,nom,horaire,identifiantProfesseur FROM cours WHERE identifiant = "+identifiant+";");
+
+            while (resultat1.next()) {
+            	int identifiantCours = resultat1.getInt("identifiant");
+                String nom = resultat1.getString("nom");
+                Timestamp dateCours = resultat1.getTimestamp("horaire");
+                int identifiantProfesseur = resultat1.getInt("identifiantProfesseur");
+
+                ArrayList<Emargement> emargements = new ArrayList<Emargement>();
+                
+                resultat2 = statement2.executeQuery("SELECT identifiant,dateArrivee,identifiantEleve,identifiantEleve FROM emargement WHERE identifiantCours ="+identifiantCours+ ";");
+                while(resultat2.next()) {
+                	int identifiantEmargement = resultat2.getInt("identifiant");
+                	Timestamp date = resultat2.getTimestamp("dateArrivee");
+                	int identifiantEleve = resultat2.getInt("identifiantEleve");
+                	
+                	Emargement emargement = new Emargement(identifiantEmargement,date,identifiantEleve,identifiantCours);
+                	emargements.add(emargement);
+                }
+                Cours cours = new Cours(identifiantCours,nom,dateCours,emargements,identifiantProfesseur);
+                return cours;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
 	}
 
 }

@@ -9,4 +9,5 @@ public interface EleveDao {
 	List<Eleve> lister();
 	void supprimer(int identifiant);
 	Eleve getEleve(String email, String motdepasse);
+	Eleve getEleve(int identifiant);
 }

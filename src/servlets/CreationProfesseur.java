@@ -31,7 +31,7 @@ public class CreationProfesseur extends HttpServlet {
 
 		/* Traitement de la requête et récupération du bean en résultant */
 		form.creationProfesseur(request);
-
+		request.setAttribute(ATT_FORM, form);
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 	}
 
