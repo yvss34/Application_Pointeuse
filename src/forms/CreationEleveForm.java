@@ -10,6 +10,10 @@ import beans.Utilisateur;
 import dao.DaoFactory;
 import dao.EleveDao;
 
+/**
+ * Contrôleur du formulaire de création d'eleve
+ *
+ */
 public class CreationEleveForm {
 	
     private static final String CHAMP_EMAIL  = "email";
@@ -38,6 +42,9 @@ public class CreationEleveForm {
 		this.erreurs = erreurs;
 	}
 
+	/**
+	 * Ajoute un eleve dans la BDD, si les informations sont correctes
+	 */
 	public Utilisateur creationEleve( HttpServletRequest request ) {
 		
         /* Récupération des champs du formulaire */

@@ -12,6 +12,10 @@ import dao.DaoFactory;
 import dao.DirigeantDao;
 import dao.ProfesseurDao;
 
+/**
+ * Contrôleur du formulaire de création d'un professeur
+ *
+ */
 public class CreationProfesseurForm {
 	
     private static final String CHAMP_EMAIL  = "email";
@@ -38,6 +42,9 @@ public class CreationProfesseurForm {
 		this.erreurs = erreurs;
 	}
     
+	/**
+	 * Ajoute un professeur dans la BDD, si les informations sont correctes
+	 */
 	public Utilisateur creationProfesseur( HttpServletRequest request ) {
 		
         /* Récupération des champs du formulaire */

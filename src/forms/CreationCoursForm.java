@@ -14,6 +14,10 @@ import dao.DaoFactory;
 import dao.EmargementDao;
 import dao.ProfesseurDao;
 
+/**
+ * Contrôleur du formulaire de création de cours
+ *
+ */
 public class CreationCoursForm {
 	
 	private String              resultat;
@@ -27,10 +31,12 @@ public class CreationCoursForm {
         return erreurs;
     }
     
+    /**
+     * Ajoute un cours dans la BDD, si les informations sont correctes
+     * @param identifiantProfesseur identifiant du professeur qui assure le cours
+     */
 	public void creationCours(HttpServletRequest request,int identifiantProfesseur) {
-		
-		
-		
+			
         try {	
         	
         	String nom = getValeurChamp(request,"nom");

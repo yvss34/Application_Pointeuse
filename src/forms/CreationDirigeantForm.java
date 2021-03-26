@@ -12,6 +12,10 @@ import dao.DaoFactory;
 import dao.DirigeantDao;
 import dao.EleveDao;
 
+/**
+ * Contrôleur du formulaire de création de dirigeant
+ *
+ */
 public class CreationDirigeantForm {
 	
     private static final String CHAMP_EMAIL  = "email";
@@ -36,6 +40,11 @@ public class CreationDirigeantForm {
 	public void setErreurs(Map<String, String> erreurs) {
 		this.erreurs = erreurs;
 	}
+	
+	
+	/**
+	 * Ajoute un dirigeant dans la BDD, si les informations sont correctes
+	 */
 	public Utilisateur creationDirigeant( HttpServletRequest request ) {
 		
         /* Récupération des champs du formulaire */

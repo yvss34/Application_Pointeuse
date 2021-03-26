@@ -11,6 +11,9 @@ import dao.DaoFactory;
 import dao.EleveDao;
 import dao.EmargementDao;
 
+/**
+ * Contrôleur du formulaire de création d'un emargement
+ */
 public class CreationEmargementForm {
 
 	private String              resultat;
@@ -24,6 +27,12 @@ public class CreationEmargementForm {
         return erreurs;
     }
     
+    
+    /**
+     * Ajoute un emargement dans la BDD, si les informations sont correctes
+     * @param identifiantEleve, identifiant de l'eleve qui émarge
+     * @param identifiantCours, identifiant du cours
+     */
 	public void creationEmargement(int identifiantEleve, int identifiantCours) {
 		
         try {

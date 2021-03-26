@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Classe Factory qui permet d'initialiser le DAO
+ */
 public class DaoFactory {
     private String url;
     private String username;
@@ -15,6 +18,10 @@ public class DaoFactory {
         this.password = password;
     }
 
+    /**
+     * Charge les drivers nécessaires et se connecte à la BDD
+     * @return un objet DaoFactory initialisé
+     */
     public static DaoFactory getInstance() {
         try {
             Class.forName("com.mysql.jdbc.Driver");

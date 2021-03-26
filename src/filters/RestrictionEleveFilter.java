@@ -13,29 +13,26 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet Filter implementation class RestrictionEleveFilter
+ * Filtre pour les utilisateurs Eleve
  */
 @WebFilter("/RestrictionEleveFilter")
 public class RestrictionEleveFilter implements Filter {
 
 	public static final String ATT_SESSION_USER = "sessionUtilisateur";
 	public static final String ACCES_PUBLIC     = "/Login";
-    /**
-     * Default constructor. 
-     */
+
     public RestrictionEleveFilter() {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see Filter#destroy()
-	 */
+
 	public void destroy() {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 * Si l'objet utilisateur n'est pas un eleve, et qu'il essaye d'acceder à des pages 
+	 * reservé aux eleves, il est redirigé vers la page de connexion
 	 */
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 
@@ -46,10 +43,7 @@ public class RestrictionEleveFilter implements Filter {
         /* Récupération de la session depuis la requête */
         HttpSession session = request.getSession();
 
-        /**
-         * Si l'objet utilisateur n'existe pas dans la session en cours, alors
-         * l'utilisateur n'est pas connecté.
-         */
+        //Si l'objet utilisateur n'existe pas dans la session en cours, alors
         if(!session.getAttribute( ATT_SESSION_USER ).getClass().getName().equals("beans.Eleve")) {
             /* Redirection vers la page publique */
         	request.getRequestDispatcher( ACCES_PUBLIC ).forward( request, response );
@@ -59,9 +53,7 @@ public class RestrictionEleveFilter implements Filter {
         }
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
+
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}

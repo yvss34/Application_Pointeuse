@@ -11,7 +11,9 @@ import dao.DirigeantDao;
 import dao.EleveDao;
 import dao.ProfesseurDao;
 
-
+/**
+ * Contrôleur du formulaire de Login
+ */
 public final class ConnexionForm {
     private static final String CHAMP_EMAIL  = "email";
     private static final String CHAMP_PASS   = "motdepasse";
@@ -56,6 +58,10 @@ public final class ConnexionForm {
 		this.dirigeant = dirigeant;
 	}
 
+	/**
+	 * 
+	 * @return l'utilisateur si la connexion est un succes, null sinon
+	 */
 	public Utilisateur connecterUtilisateur( HttpServletRequest request ) {
         /* Récupération des champs du formulaire */
         String email = getValeurChamp( request, CHAMP_EMAIL );
